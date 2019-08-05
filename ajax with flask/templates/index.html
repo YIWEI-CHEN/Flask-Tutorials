@@ -9,21 +9,39 @@
 
         <div id="response"></div>
 
-        <script
+        <!-- <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
   <script type="text/javascript">
+      var cars = [
+        {"make":"Porsche", "model":"911S"}
+      ]
       $('button#btn').click(function(){
+        // $.ajax({
+        //     url: "/_get_data/",
+        //     type: "POST",
+        //     success: function(resp){
+        //         $('div#response').append(resp.data);
+        //     }
+        // });
+        doWork();
+        
+      });
+      function doWork() {
         $.ajax({
-            url: "/_get_data/",
+            url: "/json",
             type: "POST",
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(cars),
             success: function(resp){
                 $('div#response').append(resp.data);
             }
         });
-      });
+      }
   </script>
 
     </body>
