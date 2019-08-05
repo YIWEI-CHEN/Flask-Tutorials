@@ -5,6 +5,7 @@
     </head>
 
     <body>
+        <a href="" id="theButton">Click Me</a>
         <button id="btn">Click Me</button>
 
         <div id="response"></div>
@@ -18,7 +19,23 @@
   <script type="text/javascript">
       var cars = [
         {"make":"Porsche", "model":"911S"}
-      ]
+      ];
+      // window.onload = function(){
+      //   document.getElementById("theButton").onclick = function(){
+      //     doWork_franke();
+      //   }
+      // }
+      $('a#theButton').click(function(){
+        // $.ajax({
+        //     url: "/_get_data/",
+        //     type: "POST",
+        //     success: function(resp){
+        //         $('div#response').append(resp.data);
+        //     }
+        // });
+        doWork_franke();
+        
+      });
       $('button#btn').click(function(){
         // $.ajax({
         //     url: "/_get_data/",
@@ -31,6 +48,18 @@
         
       });
       function doWork() {
+        $.ajax({
+            url: "/json",
+            type: "POST",
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(cars),
+            success: function(resp){
+                $('div#response').append(resp.data);
+            }
+        });
+      }
+      function doWork_franke() {
         $.ajax({
             url: "/json",
             type: "POST",
